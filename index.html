@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://use.typekit.net/qlp4hlf.css">
+	<link rel="stylesheet" href="main.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lakeshore</title>
+</head>
+<body>
+	<div class="forum-wrapper">
+		<div class="inner">
+			<div class="post">
+				<h4>TAP 8/26/2021</h4>
+				<div>Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Curabitur blandit tempus porttitor. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</div>
+			</div>
+
+			<form name="submit-to-google-sheet">
+				<h4>comment as anonymous:</h4>
+				<input type="radio" id="1" name="number" value="1" required>
+				<label for="1"><img src="assets/1.gif"/></label>
+				<input type="radio" id="2" name="number" value="2" required>
+				<label for="2"><img src="assets/2.gif"/></label>
+				<input type="radio" id="3" name="number" value="3" required>
+				<label for="3"><img src="assets/3.gif"/></label><br>
+	  			<button type="submit">Post</button>
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+	
+	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+	<script>
+	  const scriptURL = 'https://script.google.com/macros/s/AKfycbwSOdTDzbFGZSiekDy7QTBjtNxQJZZw_08hFXZ2phB6KEBB5w5deiK0RrHHs4LNzmZrbQ/exec'
+	  const form = document.forms['submit-to-google-sheet']
+
+	  form.addEventListener('submit', e => {
+	    e.preventDefault()
+	    document.querySelector("button").innerHTML = "posting..."
+	    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+	      .then(function(response){ document.querySelector("button").innerHTML = "posted";document.querySelector("button").classList.add("posted"); setTimeout(function(){
+	      	  init();
+	      },100)})
+	      .catch(error => console.error('Error!', error.message))
+	  })
+	
+				
+		let SHEET_ID = '14FYUBGRLEt7mw1XifLAvF_I696lwFeXrb0ZAE_3sVQw'; // Get this from 
+		var public_spreadsheet_url =
+		  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTKWSzeJhK_moFkCR5dTjaUvnml_5nEj063NB0Pr2rhQMw9q0-IX_q0aP4iN7cugtZbpVDoDV4CTGsm/pub?gid=0&single=true&output=csv";
+
+		function init() {
+			let currentComments = document.querySelectorAll(".comment");
+			for (var i = currentComments.length - 1; i >= 0; i--) {
+				currentComments[i].remove();
+			}
+		  Papa.parse(public_spreadsheet_url, {
+		    download: true,
+		    header: true,
+		    complete: showInfo
+		  });
+		}
+
+		// function fetchSheet({ spreadsheetId, sheetName, apiKey, complete }) {
+		//     let url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
+		//     return fetch(url).then(response =>
+		//         response.json().then(result => {
+		//         	console.log(result)
+		//             let data = Papa.parse(Papa.unparse(result.values), { header: true });
+		//             complete(data);
+		//         })
+		//     );
+		// }
+
+		// function init() {
+		// 	let currentComments = document.querySelectorAll(".comment");
+		// 	for (var i = currentComments.length - 1; i >= 0; i--) {
+		// 		currentComments[i].remove();
+		// 	}
+		//     fetchSheet({
+		//         spreadsheetId: SHEET_ID,
+		//         sheetName: 'Sheet1',
+		//         apiKey: API_KEY,
+		//         complete: showInfo
+		//     });
+		// }
+		function showInfo(results) {
+		    let data = results.data;
+		    for (var i = data.length - 1; i >= 0; i--) {
+		    	console.log(data[i])
+		    	const newDiv = document.createElement("div");
+		    	const newText = document.createElement("h4");
+		    	const newWrapper = document.createElement("div");
+		    	newWrapper.classList.add("wrapper")
+		    	const newContent = document.createTextNode("anonymous "+ data[i]["timestamp"]);
+		    	const newLeaf = document.createElement("img");
+		    	newLeaf.classList.add("leaf");
+		    	newLeaf.src = "assets/Vector.png"
+		    	newText.appendChild(newLeaf);
+		    	newText.appendChild(newContent);
+		    	newDiv.appendChild(newText);
+		    	const newImg = document.createElement("img");
+		    	newImg.src = "assets/"+ data[i]["number"]  + ".gif"
+		    	newWrapper.appendChild(newImg)
+		    	newDiv.appendChild(newWrapper);
+		    	document.querySelector(".inner").appendChild(newDiv)
+		    	newDiv.classList.add("comment");
+
+		    }
+
+		    let leaves = document.querySelectorAll(".leaf");
+		    for (var i = leaves.length - 1; i >= 0; i--) {
+		    	leaves[i].style.transform="rotate(" + getRandomInt(100) + "deg)";
+		    }
+		}
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+		init()
+	</script>
+	<script src="main.js"></script>
+</body>
+</html>
