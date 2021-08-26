@@ -160,6 +160,9 @@ form{
 		bottom:-5px;
 		width: 40px;
 	}
+	label {
+		margin:5px;
+	}
 	.forum-wrapper .comment{
 		margin-left:15px;
 	}
