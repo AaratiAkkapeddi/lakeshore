@@ -138,3 +138,29 @@ form{
 .forum-wrapper .comment div, .forum-wrapper .post div{
 	margin-top:5px;
 }
+
+@media(max-width:760px){
+	.forum-wrapper{
+		margin:0;
+		padding:0;
+		width: 100%;
+	}
+	body,h1,h2,h3,h4{
+		font-size:20px;
+	}
+	form{
+		margin:0;
+		padding:25px;
+	}
+	.forum-wrapper .comment, .post{
+		margin:0;
+		padding:0;
+	}
+	.leaf{
+		bottom:-5px;
+		width: 40px;
+	}
+	.forum-wrapper .comment{
+		margin-left:15px;
+	}
+}
