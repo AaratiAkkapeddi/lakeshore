@@ -2,17 +2,15 @@ let song, analyzer;
 let r, g, b;
 let mic, fft;
 let x = 0;
-let img;
-let img2;
-let img3;
-let img4;
+let imgs = [];
+
 
 function preload() {
   song = loadSound('faic.mp3');
-  img = loadImage('1.png');
-  img2 = loadImage('2.png');
-  img3 = loadImage('3.png');
-  img4 = loadImage('4.png');
+  for (var i = 16 - 1; i >= 0; i--) {
+    let img = loadImage("./water/frame"+(i+1)+".jpg")
+    imgs.push(img)
+  }
 
 }
 
@@ -45,45 +43,51 @@ function draw() {
   let spectrum = fft.analyze();
   for (i = 0; i < spectrum.length; i++) {
 
-    let txt = map(spectrum[i],0,255,1,4);
+    let txt = map(spectrum[i],0,255,0,15);
+
     txt = floor(txt);
-    if(txt == 4){
-      image(img4, i * 40,windowHeight/2,50, 80);
-    } else if(txt == 3){
-      image(img3,i * 40 ,windowHeight/2,50, 80);
-    }else if(txt == 2){
-      image(img2,i * 40 ,windowHeight/2,50, 80);
-    }else if(txt==1){
-      image(img, i * 40,windowHeight/2,50, 80);
+    let r = windowWidth/45;
+    image(imgs[txt],r * i,windowHeight/2,)
+    image(imgs[txt], windowWidth - r * i,windowHeight/2 - 175,)
+    image(imgs[txt],r * i,windowHeight/2 - 175 - 175,)
+    image(imgs[txt], windowWidth - r * i,windowHeight/2 + 175,)
+    image(imgs[txt],r * i,windowHeight/2 + 175 + 175,)
+
+  }
+  let s = map(floor(rms * 10000), 0, 900, 0, 10);
+  console.log(floor(s))
+  if(s > 0){
+    for (var i = s - 1; i >= 0; i--) {
+      image(imgs[floor(random(0,15))],floor(random(98,windowWidth - 98)),random([windowHeight/2 + 175 + 175, windowHeight/2 + 175, windowHeight/2 - 175 - 175, windowHeight/2 - 175, windowHeight/2]))
     }
   }
-  background( spectrum[spectrum.length - 1] * 1.1, spectrum[1],spectrum[0] * 1.1,(rms * 1000))
+  // blendMode(HARD_LIGHT);
+  background(17,21,28,(rms * 1000))
   
 
-
-  stroke(spectrum[0] * 1.1, spectrum[1],spectrum[spectrum.length - 1] * 1.1,20)
+  
   noFill()
-  push()
-  translate(width/2, height/2);
-  scale((rms*100))
-  rotate(x)
-  push()
+  // push()
+  // translate(width/2, height/2);
+  // scale((rms*100))
+  // rotate(x)
+  // push()
 
   
-  for (i = 0; i < spectrum.length; i++) {
-    rotate(i/2)
-    rect(0,0,1,spectrum[i])
+  // for (i = 0; i < spectrum.length; i++) {
+  //   rotate(i/2)
+  //   rect(0,0,1,spectrum[i])
 
-  }
-  pop()
-  pop()
+  // }
+  // pop()
+  // pop()
 
 
-  if(x >= 360){
-    x = 0
-  }else{
-    x = x + 0.001;
-  }
+  // if(x >= 360){
+  //   x = 0
+  // }else{
+  //   x = x + 0.001;
+  // }
   // beginShape();
   // for (i = 0; i < spectrum.length; i++) {
   //   curveVertex(i*20, map(spectrum[i], 0, 255, height, 0));
