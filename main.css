@@ -38,6 +38,23 @@ font-style: normal;
 */
 a:link, a:hover, a:focus, a{
 	color:#cddce1;
+	text-decoration: none;
+	border-bottom:1px dotted darkgoldenrod;
+}
+a:hover{
+	border-bottom:1px solid darkgoldenrod;
+}
+a.internal::before{
+	display: inline-block;
+	color:darkgoldenrod;
+	content:"⟶";
+	margin-right:10px;
+}
+a.internal--back::before{
+	display: inline-block;
+	color:darkgoldenrod;
+	content:"⟵";
+	margin-right:10px;
 }
 .post em{
 	font-size:50px;

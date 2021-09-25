@@ -25,6 +25,17 @@ canvas {
 	left:0;
 	padding:25px;
 }
+#about-arrow{
+	color:#11151c;
+	text-decoration: none;
+	font-size:24px;
+	font-family: Study, san-serif;
+	position: fixed;
+	z-index: 9999;
+	top:0;
+	right:0;
+	padding:25px;
+}
 
 img{
 /*	display: none;*/
