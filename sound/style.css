@@ -15,7 +15,7 @@ canvas {
   position:fixed;
 }
 #back-arrow{
-	color:darkgoldenrod;
+	color:#11151c;
 	text-decoration: none;
 	font-size:24px;
 	font-family: Study, san-serif;
@@ -48,6 +48,7 @@ img.on{
 	position: relative;
 	text-align:center;
 	display: block;
+	color:#11151c;
 	margin-top:15vh;
 	z-index: 9;
 }
@@ -79,7 +80,7 @@ img.on{
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #fff;
+  background: darkgoldenrod;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
