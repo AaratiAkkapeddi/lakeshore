@@ -1,4 +1,41 @@
+.img-gallery > img{
+	width: 32%;
+	margin-bottom:10px;
+	cursor: pointer;
+	vertical-align: top;
+}
+.img-gallery > img.double{
+	width: 64%;
+}
+.img-gallery{
+	text-align: center;
+}
 
+#lightbox.on{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position:fixed;
+	left:0;
+	pointer-events: auto;
+	top:0;
+	background:rgba(0,0,0,0.5);
+	width:100vw;
+	height:100vh;
+	overflow: scroll;
+}
+#lightbox{
+	display: none;
+	pointer-events: none;
+}
+
+#lightbox img{
+	max-width:90%;
+	max-height: 95vh;
+	position: relative;
+	display: block;
+	margin:0 auto;
+}
 /*
    fonts
    Pelago Bold
