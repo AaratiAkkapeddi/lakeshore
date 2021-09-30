@@ -56,8 +56,7 @@ img.on{
 	z-index: 999;
 }
 #back-arrow:hover,#about-arrow:hover{
-	top:-5px;
-	left:-5px;
+	transform:translate(-5px,-5px);
 }
 #back-arrow,#about-arrow{
   background: rgba(255,255,255,0.8);
