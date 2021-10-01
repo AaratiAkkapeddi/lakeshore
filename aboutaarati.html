@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<link rel="stylesheet" href="https://use.typekit.net/qlp4hlf.css">
+	<link rel="stylesheet" href="./main.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>For all, I care.</title>
+</head>
+<body>
+	<div class="forum-wrapper">
+		<div class="inner">
+			<div class="post">
+				<a class="internal--back" href="./index.html#form">back to piece</a><!-- <br>
+				<a class="internal--back" href="./index.html">back to piece</a> -->
+				<p><em>Aarati Akkapeddi</em> is a Telugu-American cross-disciplinary artist, coder, and educator, interested in the poetics and politics of datasets. They work with both personal and institutional archives in order to explore how identities and histories are shaped by different methods of collecting, preserving and presenting data. In their work, they often use family photographs and archival images as source material. They combine code, machine learning, and analogue techniques (such as photography, printmaking, & embossing) with these images to create performative rituals of information extraction. Their work has been recognized by institutions such as The Etopia Center for Art & Technology in Zaragoza, Spain, Ada X in Montreal, CA, The Center for Heritage Arts & Textile in Hong Kong, and NYC Media Lab in New York City. Currently they are part-time faculty at Parsons School for Design where they teach in the Design & Technology and Data Visualization departments. You can view their work at <a href="https://aarati.me">https://aarati.me</a>
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	let imgs = document.querySelectorAll(".gallery-img");
+	console.log(imgs)
+	let lightbox = document.getElementById("lightbox");
+	lightbox.addEventListener("click",function(){
+		lightbox.classList.remove("on")
+	})
+	for (var i = imgs.length - 1; i >= 0; i--) {
+		let img = imgs[i]
+		imgs[i].addEventListener("click", function(){
+			let src = this.src;
+			document.querySelector("#light-box-img").src = src;
+			lightbox.classList.add("on")
+		})
+		
+	}
+})
+</script>
+
+
+
+	
+
+</body>
+</html>
